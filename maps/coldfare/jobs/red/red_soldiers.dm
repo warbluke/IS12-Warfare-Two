@@ -7,9 +7,10 @@
 	auto_rifle_skill = 10
 	semi_rifle_skill = 7
 	sniper_skill = 3
-	shotgun_skill = 6
+	shotgun_skill = 5
 	lmg_skill = 3
 	smg_skill = 3
+	boltie_skill = 10
 
 	squad_overlay = "rifleman"
 
@@ -85,6 +86,7 @@
 	smg_skill = 10
 	shotgun_skill = 10
 	total_positions = -1
+	boltie_skill = 5
 
 	announced = FALSE
 
@@ -226,6 +228,7 @@
 	shotgun_skill = 0
 	lmg_skill = 0
 	smg_skill = 0
+	boltie_skill = 0
 	supervisors = "adults and your very cool country"
 	announced = FALSE
 
@@ -268,6 +271,12 @@
 		backpack_contents = list(/obj/item/grenade/smokebomb = 1)
 		belt = /obj/item/storage/belt/armageddon
 
+	else if (prob(5))
+		suit_store = /obj/item/gun/projectile/shotgun/pump/boltaction/good
+		r_pocket =  /obj/item/ammo_box/rifle/modern
+		backpack_contents = initial(backpack_contents)
+		belt = null
+
 	else if(prob(25))
 		suit_store = /obj/item/gun/projectile/shotgun/pump/boltaction/shitty/leverchester
 		r_pocket = /obj/item/ammo_box/rifle
@@ -293,17 +302,21 @@
 	..()
 
 /decl/hierarchy/outfit/job/redsoldier/sgt
-	suit = /obj/item/clothing/suit/armor/redcoat/sl
 
 /decl/hierarchy/outfit/job/redsoldier/sgt/equip()
 	if(prob(1))
 		suit_store = /obj/item/gun/projectile/shotgun/pump/shitty/sawn
 		r_pocket = /obj/item/ammo_box/shotgun
-	else if(prob(50))
+	else if(prob(40))
 		suit_store = /obj/item/gun/projectile/automatic/m22/warmonger/fully_auto
 		backpack_contents = list(/obj/item/clothing/mask/gas/ancient = 1)
 		r_pocket = /obj/item/grenade/smokebomb
 		//chest_holster = /obj/item/storage/backpack/satchel/warfare/chestrig/red
+	else if(prob(5)) //I am light weapons guy. And this is my weapon.
+		suit_store = /obj/item/gun/projectile/automatic/m22/warmonger/fully_auto/oldlmg
+		r_pocket = /obj/item/grenade/smokebomb
+		backpack_contents = list(/obj/item/clothing/mask/gas/ancient = 1)
+		chest_holster = /obj/item/storage/backpack/satchel/warfare/chestrig/red/oldlmg
 	else
 		suit_store =/obj/item/gun/projectile/automatic/m22/warmonger/m14
 		r_pocket = /obj/item/grenade/smokebomb

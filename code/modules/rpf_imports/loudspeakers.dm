@@ -28,15 +28,26 @@
 
 	var/cooldown // Cooldown for inputs
 
+	var/list/mobstosendto = list()
+	var/list/speakers = list()
+
+/obj/structure/announcementmicrophone/Initialize()
+	. = ..()
+	for(var/obj/structure/announcementspeaker/s in world)
+		if(s.id == src.id)
+			speakers |= s
+
 /obj/structure/announcementmicrophone/attack_hand(mob/user)
+	return //Will re-enable after we are sure all other lag is gone.
+/*
 	. = ..()
 	if(!cooldown)
 		if(!broadcasting)
 			broadcasting = TRUE
 			listening = TRUE
 			set_cooldown(6 SECONDS)
-			for(var/obj/structure/announcementspeaker/s in world)
-				if(id == s.id)
+			for(var/obj/structure/announcementspeaker/s in speakers)
+				if(id == s.id) // gotta make sure
 					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
 					playsound(s.loc, broadcast_start_sound, broadcast_start_sound_volume, 0)
 					//s.overlays += image('icons/obj/structures.dmi', icon_state = "rpfsafe") // call a proc on the speakers in the future to update icon?
@@ -46,7 +57,7 @@
 			broadcasting = FALSE
 			listening = FALSE
 			set_cooldown(20 SECONDS)
-			for(var/obj/structure/announcementspeaker/s in world)
+			for(var/obj/structure/announcementspeaker/s in speakers)
 				if(id == s.id)
 					playsound(s.loc, broadcast_end_sound, broadcast_end_sound_volume, 0)
 					s.overlays.Cut()
@@ -63,7 +74,7 @@
 			listening = TRUE
 		playsound(src.loc, "button", 75, 1)
 		update_icon()
-
+*/
 /obj/structure/announcementmicrophone/hear_talk(mob/living/M as mob, msg, var/verb="says", datum/language/speaking=null)
 	if(broadcasting)
 		if(listening)
@@ -100,25 +111,27 @@
 				return
 */
 /obj/structure/announcementmicrophone/proc/transmitmessage(spkrname, msg, var/verbtxt)
-	var/list/mobstosendto = list()
-	var/list/clients = list()
+	//var/list/clients = list()
 	var/this_sound = null
+	mobstosendto.Cut()
 	if(additional_talk_sound)
 		this_sound = pick(shuffle(additional_talk_sound))
-	for(var/obj/structure/announcementspeaker/s in world)
+	for(var/obj/structure/announcementspeaker/s in speakers)
 		if(id == s.id)
-			for(var/mob/living/carbon/m in view(world.view + broadcast_range, get_turf(s)))
-				if(!m.stat == UNCONSCIOUS || !m.is_deaf() || !m.stat == DEAD)
-					mobstosendto |= m
-					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
-					if(m.client)
-						clients |= m.client
+			for(var/mob/living/carbon/H in get_area(s))
+				mobstosendto |= H
+			//for(var/mob/living/carbon/m in view(world.view + broadcast_range, get_turf(s)))
+				//if(!m.stat == UNCONSCIOUS || !m.is_deaf() || !m.stat == DEAD)
+				//	mobstosendto |= m
+				//	soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
+				//	//if(m.client)
+				//	//	clients |= m.client
 			// it got annoying REALLY FAST having them all being different..
 			playsound(get_turf(s),this_sound , additional_talk_sound_volume, additional_talk_sound_vary, ignore_walls = FALSE, extrarange = 4)
-			INVOKE_ASYNC(s, /atom/movable/proc/animate_chat, "<font color='[rune_color]'><b>[msg]", null, 0, clients, 5 SECONDS, 1)
+			//INVOKE_ASYNC(s, /atom/movable/proc/animate_chat, "<font color='[rune_color]'><b>[msg]", null, 0, clients, 5 SECONDS, 1)
 	for(var/mob/living/carbon/m in mobstosendto)
 		to_chat(m,"<h2><span class='[speakerstyle]'>[spkrname] [verbtxt], \"<span class='[textstyle]'>[msg]</span>\"</span></h2>")
-
+/*
 /obj/structure/announcementmicrophone/proc/transmitemote(spkrname, emote)
 	var/list/mobstosendto = list()
 	for(var/obj/structure/announcementspeaker/s in world)
@@ -129,7 +142,7 @@
 					soundoverlay(s, newplane = FOOTSTEP_ALERT_PLANE)
 	for(var/mob/living/carbon/m in mobstosendto)
 		to_chat(m,"<h2><span class='[speakerstyle]'>[spkrname] [emote]</h2>")
-
+*/
 /*
 /obj/structure/announcementmicrophone/proc/speakmessage(var/text)
 	var/turf/die = get_turf(handset)

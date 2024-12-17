@@ -3,6 +3,8 @@
 
 	// PENDING COMPLETE REWORK SOMETIME AFTER 9/26/2024 TO USE CARGO CODE DATUMS FOR STUFF :SOB:
 
+// this code is fucking retarded I will rewrite it someday but not today 11/2/2024
+
 /obj/structure/closet/crate/scuffedcargo/
 	name = "TEST CRATE #1"
 	icon = 'icons/obj/storage.dmi'
@@ -392,7 +394,7 @@
 		list("name" = "Bolt Action Rifle Pack", "price" = 50, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/shotgun/pump/boltaction/shitty/leverchester = 10)),
 		list("name" = "Soulburn Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/automatic/machinepistol/wooden = 5)),
 		list("name" = "Flamethrower Pack", "price" = 200, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/automatic/flamer = 1, /obj/item/ammo_magazine/flamer = 2)),
-		list("name" = "Frag Grenade Pack", "price" = 350, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade_box/frags = 2)),
+		list("name" = "Frag Grenade Pack", "price" = 350, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade/frag/warfare = 5)),
 		list("name" = "Trench Club Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/melee/classic_baton/trench_club = 5)),
 		list("name" = "Mortar Pack", "price" = 600, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/mortar_launcher = 2, /obj/item/mortar_shell = 6)),
 
@@ -408,8 +410,8 @@
 		list("name" = "Booze Crate", "price" = 100, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/random/drinkbottle = 8)),
 		list("name" = "Atepoine Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/reagent_containers/hypospray/autoinjector/revive = 10)),
 		list("name" = "Blood Injector Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/reagent_containers/hypospray/autoinjector/blood = 10)),
-		list("name" = "Smoke Grenade Pack", "price" = 150, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade_box/smoke = 2)),
-		list("name" = "Trench Bridge Pack", "price" = 150, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade_box/trench_bridge = 2)),
+		list("name" = "Smoke Grenade Pack", "price" = 150, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade/smokebomb = 5)),
+		//list("name" = "Trench Bridge Pack", "price" = 150, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade_box/trench_bridge = 2)),
 
 
 		// team stuff
@@ -449,7 +451,7 @@
 		list("name" = "Bolt Action Rifle Pack", "price" = 50, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/shotgun/pump/boltaction/shitty = 10)),
 		list("name" = "Soulburn Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/automatic/machinepistol = 5)),
 		list("name" = "Flamethrower Pack", "price" = 200, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/gun/projectile/automatic/flamer = 1, /obj/item/ammo_magazine/flamer = 2)),
-		list("name" = "Frag Grenade Pack", "price" = 350, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade_box/frags = 2)),
+		list("name" = "Frag Grenade Pack", "price" = 350, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade/frag/warfare = 5)),
 		list("name" = "Trench Club Pack", "price" = 100, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/melee/classic_baton/trench_club = 5)),
 		list("name" = "Mortar Pack", "price" = 600, "category" = "Weaponry", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/mortar_launcher = 2, /obj/item/mortar_shell = 6)),
 
@@ -465,8 +467,8 @@
 		list("name" = "Booze Crate", "price" = 100, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/random/drinkbottle = 8)),
 		list("name" = "Atepoine Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/reagent_containers/hypospray/autoinjector/revive = 10)),
 		list("name" = "Blood Injector Pack", "price" = 50, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/reagent_containers/hypospray/autoinjector/blood = 10)),
-		list("name" = "Smoke Grenade Pack", "price" = 150, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade_box/smoke = 2)),
-		list("name" = "Trench Bridge Pack", "price" = 150, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade_box/trench_bridge = 2)),
+		list("name" = "Smoke Grenade Pack", "price" = 150, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade/smokebomb = 5)),
+		//list("name" = "Trench Bridge Pack", "price" = 150, "category" = "Miscellaneous", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/grenade_box/trench_bridge = 2)),
 
 		// team stuff
 //		list("name" = "Illumination Mortar Ammo (Red)", "price" = 300, "category" = "Ammunition", "path" = /obj/structure/closet/crate/scuffedcargo, "willcontain" = list(/obj/item/mortar_shell/flare = 8)),

@@ -120,7 +120,9 @@ GLOBAL_LIST_INIT(revolver_fire, list('sound/weapons/gunshot/revolverfire1.ogg','
 GLOBAL_LIST_INIT(revolver_reload, list('sound/weapons/guns/interact/revolverload1.ogg','sound/weapons/guns/interact/revolverload2.ogg','sound/weapons/guns/interact/revolverload3.ogg'))
 GLOBAL_LIST_INIT(concrete_metal_scrape, list('sound/effects/metalconcrete1.ogg','sound/effects/metalconcrete2.ogg','sound/effects/metalconcrete3.ogg'))
 GLOBAL_LIST_INIT(megaphone, list('sound/effects/megaphone_01.ogg','sound/effects/megaphone_02.ogg', 'sound/effects/megaphone_05.ogg'))
-
+GLOBAL_LIST_INIT(launcher_fire, list('sound/weapons/guns/fire/launcher_fire_01.ogg','sound/weapons/guns/fire/launcher_fire_02.ogg'))
+GLOBAL_LIST_INIT(sentrystep,list('sound/effects/footsteps/armor/sentry/sentry1.ogg','sound/effects/footsteps/armor/sentry/sentry2.ogg','sound/effects/footsteps/armor/sentry/sentry3.ogg'))
+GLOBAL_LIST_INIT(pracstep,list('sound/effects/footsteps/prac/prac1.ogg','sound/effects/footsteps/prac/prac2.ogg','sound/effects/footsteps/prac/prac3.ogg'))
 
 /proc/playsound(atom/source, soundin, vol as num, vary, extrarange as num, falloff, is_global, frequency, is_ambiance = 0,  ignore_walls = TRUE, zrange = 2, override_env, envdry, envwet)
 	if(isarea(source))
@@ -306,6 +308,9 @@ var/const/FALLOFF_SOUNDS = 0.5
 			if ("revolver_reload") soundin = pick(GLOB.revolver_reload)
 			if ("concrete_metal_scrape") soundin = pick(GLOB.concrete_metal_scrape)
 			if ("loudspeaker") soundin = pick(GLOB.megaphone)
+			if ("launcher_fire") soundin = pick(GLOB.launcher_fire)
+			if ("sentry_step") soundin = pick(GLOB.sentrystep)
+			if ("cloth_step") soundin = pick(GLOB.pracstep)
 	return soundin
 
 
